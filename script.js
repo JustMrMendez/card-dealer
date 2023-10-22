@@ -54,23 +54,23 @@ window.onload = () => {
     card.style.padding = '1rem';
     card.style.fontSize = '3rem';
     //  styles
+    let topLeft = document.createElement('span');
+    let center = document.createElement('span');
+    let bottomRight = document.createElement('span');
     topLeft.style.position = 'absolute';
     topLeft.style.top = '10px';
     topLeft.style.left = '15px';
     bottomRight.style.position = 'absolute';
     bottomRight.style.bottom = '10px';
     bottomRight.style.right = '15px';
-    if (suit === '♥️' || suit === '♦️') {
-        card.style.color = 'red';
-    }
-    let topLeft = document.createElement('span');
-    let center = document.createElement('span');
-    let bottomRight = document.createElement('span');
     card.appendChild(topLeft);
     card.appendChild(center);
     card.appendChild(bottomRight);
+    if (suit === '♥️' || suit === '♦️') {
+        card.style.color = 'red';
+    }
     
+    center.innerText = suit;
+    bottomRight.innerText = rank;
+    topLeft.innerText = rank;
 }
-center.innerText = suit;
-bottomRight.innerText = rank;
-topLeft.innerText = rank;
