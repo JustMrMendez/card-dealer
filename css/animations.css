@@ -38,3 +38,14 @@
         margin-left: 0;
     }
 }
+
+@keyframes slideAway {
+    0% {
+        opacity: 1;
+        transform: translateY(0) translateX(0);
+    }
+    100% {
+        /* opacity: 0; */
+        transform: translateY(-200%) translateX(100%);
+    }
+}

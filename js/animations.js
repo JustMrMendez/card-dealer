@@ -21,3 +21,13 @@ export function initAnimations() {
 	// game logic
 	document.querySelector(".hand-container").style.display = "none";
 }
+
+
+export function animateAndRemoveTopDeckCard() {
+    const deckContainer = document.querySelector(".deck-container");
+    const topCardElement = deckContainer.lastChild;
+    if (topCardElement) {
+        topCardElement.style.animation = "slideAway 2s forwards";
+        setTimeout(() => topCardElement.remove(), 1000);
+    }
+}

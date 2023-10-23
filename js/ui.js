@@ -9,11 +9,12 @@ export function spreadCards(cards) {
 		const rotation = maxRotation * (i - (totalCards - 1) / 2);
 		let stackMargin = -30 * Math.abs(i - (totalCards - 1) / 2);
 		if (i === totalCards - 1) stackMargin = 0;
-		displayCard(cards[i], rotation, stackMargin, cardWidth);
+		const animate = i === totalCards - 1;
+		displayCard(cards[i], rotation, stackMargin, cardWidth, animate);
 	}
 }
 
-export function displayCard(card, rotationDegree, stackMargin, width) {
+export function displayCard(card, rotationDegree, stackMargin, width, animate) {
 	let [suit, rank, _] = card;
 	const card_container = document.createElement("div");
 	card_container.classList.add("card");
@@ -22,7 +23,13 @@ export function displayCard(card, rotationDegree, stackMargin, width) {
 	card_container.style.marginRight = `${stackMargin}px`;
 	card_container.style.width = `${width}px`; // set the width
 	card_container.style.height = `${width * 1.25}px`; // set the height
-
+	if (animate) {
+		card_container.style.transform = `translateY(200px) translateX(200px)`;
+		setTimeout(() => {
+			card_container.style.transition = "transform 0.5s ease-in-out";
+			card_container.style.transform = `rotate(${rotationDegree}deg) translateY(25%)`;
+		}, 0);
+	}
 	document.querySelector(".hand-container").appendChild(card_container);
 	if (suit === "♥️" || suit === "♦️")
 		card_container.classList.add("red-card");

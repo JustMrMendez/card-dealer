@@ -1,6 +1,7 @@
 import { deck, shuffleDeck } from "./deck.js";
 import { createSpanElement } from "./ui.js";
 import { spreadCards } from "./ui.js";
+import { animateAndRemoveTopDeckCard } from "./animations.js";
 
 export function getRandomCards(deck, num) {
 	const randomCards = [];
@@ -66,13 +67,14 @@ export function drawCard() {
 	const deckCounter = document.querySelector(".deck-counter");
 
 	if (deck.length > 0) {
+		animateAndRemoveTopDeckCard();
 		const topCard = deck.shift();
 		// if the hand total value is more than 21, game over
 		if (hand.reduce((a, b) => a + b[2], 0) + topCard[2] > 21) {
 			alert("Game Over");
 			// reset the game
 			location.reload();
-			return
+			return;
 		}
 
 		hand.push(topCard);
