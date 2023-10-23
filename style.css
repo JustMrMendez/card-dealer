@@ -1,20 +1,161 @@
-body{
-    display: grid;
-    place-items: center;
+/* Base styles */
+body {
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    background-color: #1a1a1a;
+    background-image: url('img/menu-bg.jpg');
+    background-size: cover;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    height: 100vh ;
+    height: 100vh;
     margin: 0;
 }
 
+/* Menu styles */
+.menu {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    gap: .1rem;
+    visibility: hidden;
+    /* margin-left: 5rem; */
+}
+
+.menu-item {
+    background-color: #2a2a2a;
+    color: #d4af37;
+    border: 2px solid #d4af37;
+    padding: 10px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s, color 0.3s;
+    animation: moveRight 1s forwards;
+    width: 100%;
+}
+
+.menu-item:hover {
+    background-color: #d4af37;
+    color: #2a2a2a;
+    scale: 1.1;
+}
+
+/* Game styles */
+.game {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hand-container {
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    font-size: 3rem;
+    padding: 0 2rem;
+}
+
 .card {
-    width: 300px;
-    height: 450px;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     display: grid;
     place-items: center;
     justify-content: center;
+    padding: 1rem;
     position: relative;
     overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.1) translateY(-10%) !important;
+    z-index: 1;
+}
+
+.deck-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    font-size: 1rem !important;
+    gap: 1px; /* Adds spacing between each card */
+}
+
+.deck-card {
+    width: 100px;
+    height: 125px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    display: grid;
+    place-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    margin-top: -124px;
+}
+
+.deck-card:hover {
+    transform: scale(1.1) translateY(-10%) !important;
+    z-index: 1;
+}
+
+.top-left, .bottom-right {
+    position: absolute;
+}
+
+.top-left {
+    top: 10px;
+    left: 15px;
+}
+
+.bottom-right {
+    bottom: 10px;
+    right: 15px;
+}
+
+.red-card {
+    color: red;
+}
+
+/* Animations */
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes moveRight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(30%);
+    }
+}
+
+.menu, .game {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
 }

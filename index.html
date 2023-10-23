@@ -4,11 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Card Dealer</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" type="text/css" href="css/base.css">
+<link rel="stylesheet" type="text/css" href="css/menu.css">
+<link rel="stylesheet" type="text/css" href="css/game.css">
+<link rel="stylesheet" type="text/css" href="css/animations.css">
+    <script src="main.js" type="module"></script>
 </head>
 <body>
-    <div class="card">
+    <!-- menu -->
+    <div class="menu">
+        <button class="menu-item">Start Game</button>
+        <button onclick="instructions()" class="menu-item">Instructions</button>
+        <button onclick="settings()" class="menu-item">Settings</button>
+    </div>    
+    <div class="game">
+        <div class="deck-container">
+            <!-- <img src="img/card_back.png" alt="card back" class="card-back deck-card"> -->
+        </div>
+        <div class="hand-container">
+        </div>
     </div>
 </body>
 </html>

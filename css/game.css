@@ -1,0 +1,107 @@
+.game {
+    opacity: 0;
+    visibility: hidden;
+}
+.hand-container,
+.deck-container {
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+}
+.hand-container {
+    font-size: 3rem;
+    padding: 0 2rem;
+}
+.deck-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    font-size: 1.5rem !important;
+    rotate: 45deg;
+    position: absolute;
+    top: 28%;
+    right: -35%;
+}
+
+.deck-container:hover {
+    cursor: pointer;
+}
+/* .deck-container:hover .deck-card {
+    margin-left: -50px;
+} */
+.card,
+.deck-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    display: grid;
+    place-items: center;
+    justify-content: center;
+    padding: 1rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+    user-select: none;
+}
+.deck-card {
+    margin-top: -283px;
+    width: 200px;
+    height: 250px;
+}
+.deck-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/card_back.png');
+    background-size: cover;
+    z-index: -1;
+  }
+  .deck-card.flipped {
+    transform: rotateY(0deg);
+    /* hide the text too  and non selectable*/
+    color: transparent;
+  }
+  
+  .deck-card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/card_back.png');
+    background-size: cover;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    z-index: -1;
+  }
+
+.card:hover {
+    transform: scale(1.1) translateY(-10%) !important;
+    z-index: 1;
+}
+
+.top-left, .bottom-right {
+    position: absolute;
+}
+
+.top-left {
+    top: 10px;
+    left: 15px;
+}
+
+.bottom-right {
+    bottom: 10px;
+    right: 15px;
+}
+
+.red-card {
+    color: red;
+}
