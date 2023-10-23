@@ -1,4 +1,4 @@
-import { deck } from "./deck.js";
+import { deck, shuffleDeck } from "./deck.js";
 import { createSpanElement } from "./ui.js";
 import { spreadCards } from "./ui.js";
 
@@ -34,16 +34,10 @@ export function generateDeck() {
 		card_container.classList.add("flipped");
 		deckContainer.appendChild(card_container);
 	}
-	deckContainer[deckContainer.length - 1].addEventListener(
-		"mouseover",
-		(e) => {
-			e.target.style.transform = "rotate(50deg)";
-		}
-	);
-	// remove transform from last card
 }
 
 export function startGame() {
+	document.body.style.justifyContent = "space-between";
 	const menu = document.querySelector(".menu");
 	menu.style.animation = "fadeOut 1s forwards";
 	menu.style.display = "none";
@@ -51,10 +45,49 @@ export function startGame() {
 	const game = document.querySelector(".game");
 	game.style.animation = "fadeIn 1s forwards";
 
+	document.querySelector(".game").classList.add("game-active");
 	document.querySelector(".hand-container").style.display = "flex";
-	document.body.style.alignItems = "end";
-	const randomCards = getRandomCards(deck, 5);
+	const randomCards = getRandomCards(deck, 0);
 	spreadCards(randomCards);
-
+	const emptyCard = document.createElement("button");
+	emptyCard.classList.add("empty-card");
+	emptyCard.innerText = "🃏";
+	emptyCard.addEventListener("click", drawCard);
+	shuffleDeck(deck);
 	generateDeck();
+	document.querySelector(".deck-counter").innerText = deck.length.toString();
+	document.querySelector(".hand-container").appendChild(emptyCard);
+	console.log(deck[0]);
+}
+
+let hand = [];
+let handValue = 0;
+export function drawCard() {
+	const deckCounter = document.querySelector(".deck-counter");
+
+	if (deck.length > 0) {
+		const topCard = deck.shift();
+		// if the hand total value is more than 21, game over
+		if (hand.reduce((a, b) => a + b[2], 0) + topCard[2] > 21) {
+			alert("Game Over");
+			// reset the game
+			location.reload();
+			return
+		}
+
+		hand.push(topCard);
+		handValue += topCard[2];
+		document.querySelector(
+			".hand-value"
+		).innerText = `You have: ${handValue.toString()}`;
+		const handContainer = document.querySelector(".hand-container");
+
+		// Clear only card elements
+		handContainer.querySelectorAll(".card").forEach((el) => el.remove());
+
+		spreadCards(hand);
+
+		deckCounter.innerText = deck.length.toString();
+		console.log(deck[0]);
+	}
 }

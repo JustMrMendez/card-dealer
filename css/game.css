@@ -2,6 +2,15 @@
     opacity: 0;
     visibility: hidden;
 }
+
+.game-active {
+    height: 100%;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .hand-container,
 .deck-container {
     display: flex;
@@ -103,5 +112,53 @@
 }
 
 .red-card {
-    color: red;
+    color: #f00;
+}
+
+/* blank card with an add button in the middle, border is dashed */
+.empty-card {
+    position: relative;
+    background-color: transparent;
+    border: none;
+    font-size: 10vw;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+.empty-card:hover {
+    transform: scale(.95) translateY(-5%);
+    z-index: 1;
+}
+/* add Draw Card to the center on hover */
+.empty-card::before {
+    content: "Draw Card";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    text-align: center;
+    height: 75%;
+    width: 68%;
+    background-color: #111227;
+    font-weight: bolder;
+    padding: 0.5rem;
+    border-radius: 25px;
+    color: #ffe598;
+    z-index: 1;
+    opacity: .01;
+    backdrop-filter: blur(100px);
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.empty-card:hover::before {
+    opacity: .7;
+}
+/* when clicked effect */
+.empty-card:active::before {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(.95);
 }

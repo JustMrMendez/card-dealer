@@ -26,3 +26,30 @@
     color: #2a2a2a;
     scale: 1.1;
 }
+
+.game-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    min-width: 200px;
+    min-height: 200px;
+    top: 25px;
+    left: 25px;
+    gap: 1rem;
+
+    animation: moveRight 1s forwards;
+  }
+  
+  .game-stats::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fbdd8e;
+    filter: blur(65px);
+    z-index: -1;
+  }

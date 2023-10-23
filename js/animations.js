@@ -19,6 +19,5 @@ export function initAnimations() {
 		15 + menuButtons.length * 4.5 + "rem";
 
 	// game logic
-	console.log("No cards left in the deck!");
 	document.querySelector(".hand-container").style.display = "none";
 }
